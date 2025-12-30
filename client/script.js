@@ -1,20 +1,35 @@
 const API_URL = 'http://localhost:3000/api/customers';
 
-// טעינת לקוחות מהשרת
 async function fetchCustomers() {
-    const res = await fetch(API_URL);
-    const data = await res.json();
-    const list = document.getElementById('list');
-    list.innerHTML = '';
-    data.forEach(c => {
-        list.innerHTML += `<li>${c.name} - ${c.email} (${c.phone})</li>`;
-    });
+    try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        const list = document.getElementById('list');
+        list.innerHTML = '';
+        
+        data.forEach(c => {
+            const li = document.createElement('li');
+            li.className = "customer-card";
+            // יצירת לינק לוואטסאפ עם המספר של הלקוח
+            const whatsappUrl = `https://wa.me/${c.phone.replace(/-/g, '')}`;
+            
+            li.innerHTML = `
+                <div>
+                    <strong>${c.name}</strong><br>
+                    <span>${c.email}</span>
+                </div>
+                <a href="${whatsappUrl}" target="_blank" class="ws-btn">שלח WhatsApp 💬</a>
+            `;
+            list.appendChild(li);
+        });
+    } catch (err) {
+        console.error("שגיאה בטעינת נתונים:", err);
+    }
 }
 
-// הוספת לקוח חדש
 document.getElementById('customerForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const customer = {
+    const customerData = {
         name: document.getElementById('name').value,
         email: document.getElementById('email').value,
         phone: document.getElementById('phone').value
@@ -23,7 +38,7 @@ document.getElementById('customerForm').addEventListener('submit', async (e) => 
     await fetch(API_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(customer)
+        body: JSON.stringify(customerData)
     });
 
     e.target.reset();

@@ -1,7 +1,8 @@
 # My CRM App
-מערכת ניהול לקוחות בסיסית (Full Stack).
+מערכת ניהול לקוחות בסיסית הכוללת שרת Node.js וצד לקוח ב-JS.
 
 ## הרצה:
-1. היכנס לתיקיית `server` והרצ `npm install`.
-2. הרצ את השרת עם `node server.js`.
-3. פתח את `client/index.html` בדפדפן.
+1. כנס לתיקיית `server`
+2. הרץ `npm install`
+3. הרץ `node server.js`
+4. פתח את `client/index.html` בדפדפן.

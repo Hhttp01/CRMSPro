@@ -9,9 +9,13 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// נתיב ה-API
+// נתיבים
 app.use('/api/customers', customerRoutes);
 
+app.get('/', (req, res) => {
+    res.send('CRM API is running...');
+});
+
 app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });

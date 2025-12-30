@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-let customers = require('../models/לקוח');
+let { customers } = require('../models/לקוח');
 
 // קבלת כל הלקוחות
 router.get('/', (req, res) => {
@@ -9,10 +9,8 @@ router.get('/', (req, res) => {
 
 // הוספת לקוח חדש
 router.post('/', (req, res) => {
-    const newCustomer = {
-        id: customers.length + 1,
-        ...req.body
-    };
+    const { name, email, phone } = req.body;
+    const newCustomer = { id: customers.length + 1, name, email, phone };
     customers.push(newCustomer);
     res.status(201).json(newCustomer);
 });

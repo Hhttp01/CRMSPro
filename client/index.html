@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מערכת CRM פשוטה</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>ניהול לקוחות</h1>
+        
+        <form id="customerForm">
+            <input type="text" id="name" placeholder="שם מלא" required>
+            <input type="email" id="email" placeholder="אימייל" required>
+            <input type="tel" id="phone" placeholder="טלפון" required>
+            <button type="submit">הוסף לקוח</button>
+        </form>
+
+        <div id="customerList">
+            <h2>רשימת לקוחות</h2>
+            <ul id="list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
